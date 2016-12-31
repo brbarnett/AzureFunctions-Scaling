@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace BB.ScalingAzureFunctions.TestHarness
 {
@@ -15,11 +16,14 @@ namespace BB.ScalingAzureFunctions.TestHarness
 
             while (true)
             {
-                using (WebClient webClient = new WebClient())
+                Console.WriteLine($"Creating request @ {DateTime.Now}");
+                Task.Run(async () =>
                 {
-                    Console.WriteLine($"Creating request @ {DateTime.Now}");
-                    webClient.DownloadStringAsync(apiUri);
-                }
+                    using (WebClient webClient = new WebClient())
+                    {
+                        Console.WriteLine(await webClient.DownloadStringTaskAsync(apiUri));
+                    }
+                });
 
                 Thread.Sleep(20);
             }
