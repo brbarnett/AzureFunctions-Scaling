@@ -1,0 +1,29 @@
+﻿{
+  "bindings": [
+    {
+      "authLevel": "anonymous",
+      "name": "requestData",
+      "type": "httpTrigger",
+      "direction": "in",
+      "route": "people",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "name": "res",
+      "type": "http",
+      "direction": "out"
+    },
+    {
+      "type": "table",
+      "name": "person",
+      "tableName": "people",
+      "partitionKey": "Person",
+      "rowKey": "{Id}",
+      "connection": "AzureWebJobsDashboard",
+      "direction": "in"
+    }
+  ],
+  "disabled": false
+}
