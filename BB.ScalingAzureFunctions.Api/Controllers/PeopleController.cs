@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 using BB.ScalingAzureFunctions.Api.Models;
@@ -26,6 +27,8 @@ namespace BB.ScalingAzureFunctions.Api.Controllers
         [SwaggerOperation("Get")]
         public async Task<HttpResponseMessage> Get(string id)
         {
+            //await Task.Run(() => Thread.Sleep(250));    // delay a quarter second to simulate I/O and/or network latency
+
             Person person = await this.GetById(id);
 
             if (person == null) return base.Request.CreateErrorResponse(HttpStatusCode.NotFound, "Could not find person");

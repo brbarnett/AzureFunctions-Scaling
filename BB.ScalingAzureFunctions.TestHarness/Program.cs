@@ -19,7 +19,7 @@ namespace BB.ScalingAzureFunctions.TestHarness
                 Console.WriteLine($"Creating request @ {DateTime.Now}");
                 Task.Run(async () => await TestUpdate());
 
-                Thread.Sleep(20);   // 1000 / 50 == 20 for 50 req/sec
+                Thread.Sleep(10);   // 1000 / 100 == 10 for 100 req/sec
             }
         }
 
