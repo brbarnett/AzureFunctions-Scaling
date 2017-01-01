@@ -8,7 +8,7 @@ namespace BB.ScalingAzureFunctions.TestHarness
 {
     class Program
     {
-        private static Random _random = new Random();
+        private static readonly Random RandomInstance = new Random();
 
         static void Main(string[] args)
         {   
@@ -25,13 +25,13 @@ namespace BB.ScalingAzureFunctions.TestHarness
 
         private static async Task TestGet()
         {
-            int id = _random.Next(1, 100);
+            int id = RandomInstance.Next(1, 100);
             Console.WriteLine(await Request($"http://bb-scaling-api.azurewebsites.net/api/people?id={id}", "GET"));
         }
 
         private static async Task TestUpdate()
         {
-            int id = _random.Next(1, 100);
+            int id = RandomInstance.Next(1, 100);
             Console.WriteLine(await Request($"http://bb-scaling-api.azurewebsites.net/api/people?id={id}&lastUpdated={DateTime.Now}", "PATCH"));
         }
 
